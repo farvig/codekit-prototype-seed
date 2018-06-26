@@ -1,0 +1,85 @@
+// Typography
+//
+// Font Families
+$font-family-base:   'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+// Font Sizes
+$font-size-base:     16px;
+
+$font-size-xlarge:   38px;
+$font-size-large:    24px;
+$font-size-medium:   20px;
+$font-size-small:    12px;
+
+// Font Weights
+$font-weight-base:   400;
+$font-weight-light:  300;
+$font-weight-heavy:  700;
+
+// Line Heights
+$line-height-base:   1.4;
+
+// Font Size Helpers Classes
+.xlarge {
+  font-size: $font-size-xlarge !important;
+}
+
+.large {
+  font-size: $font-size-large !important;
+}
+
+.medium {
+  font-size: $font-size-medium !important;
+}
+
+.small {
+  font-size: $font-size-small !important;
+}
+
+%limit-width {
+  max-width: 40rem;
+}
+
+%push-bottom {
+  margin-bottom: $spacing;
+}
+
+%flush-top {
+  margin-top: 0;
+}
+
+h1,
+.alpha {
+  @extend %limit-width;
+  @extend %push-bottom;
+  @extend %flush-top;
+  font-size: $font-size-xlarge;
+  font-weight: $font-weight-heavy;
+  margin-bottom: $spacing;
+}
+
+h2,
+.beta,
+.lead {
+  @extend %limit-width;
+  @extend %push-bottom;
+  @extend %flush-top;
+  font-size: $font-size-large;
+  font-weight: $font-weight-base;
+  margin-bottom: $spacing;
+}
+
+h3, .gamma,
+h4, .delta,
+h5, .epsilon,
+h6, .zeta {
+  @extend %limit-width;
+  @extend %flush-top;
+  font-size: $font-size-medium;
+  font-weight: $font-weight-heavy;
+  margin-bottom: 0;
+}
+
+p {
+  @extend %limit-width;
+}

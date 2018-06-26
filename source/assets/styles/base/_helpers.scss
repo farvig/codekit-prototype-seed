@@ -1,0 +1,133 @@
+$directions: 'left', 'right', 'both';
+
+@mixin clear-generate($namespace: '') {
+  @each $direction in $directions {
+    .clear-#{$direction}#{$namespace} {
+      clear: #{$direction};
+    }
+  }
+}
+
+// Generate clear classes without suffix.
+@include clear-generate();
+
+// Generate clear classes with all the breakpoint suffixes
+@each $breakpoint in $breakpoints {
+  @include media($breakpoint) {
+    @include clear-generate('--#{$breakpoint}');
+  }
+}
+
+
+$nths: 2, 3, 4;
+
+@mixin clear-nth-generate($namespace: '') {
+  @each $nth in $nths {
+    .clear-#{$nth}nth#{$namespace}:nth-of-type(#{$nth}n+#{$nth + 1}) {
+      clear: left;
+    }
+  }
+}
+
+// Generate clear classes without suffix.
+@include clear-nth-generate();
+
+// Generate clear classes with all the breakpoint suffixes
+@each $breakpoint in $breakpoints {
+  @include media($breakpoint) {
+    @include clear-nth-generate('--#{$breakpoint}');
+  }
+}
+
+.flush {
+  margin-bottom: 0 !important;
+}
+
+.band {
+  @extend %clearfix;
+  margin-bottom: $spacing;
+  width: 100%;
+}
+
+@each $pos in right, center, left {
+  .align-#{$pos} {
+    text-align: #{$pos};
+  }
+}
+.muted {
+  filter: alpha(opacity = 50) !important;
+  opacity: .5 !important;
+}
+
+.square {
+  height: 0;
+  padding-bottom: 100%;
+}
+
+.rectangle {
+  height: 0;
+  padding-bottom: 48%;
+  padding-bottom: calc(50% - #{22px/2});
+}
+
+
+// fixes opacity transition when container is overflow hidden with border radius
+%transitionfix {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0)
+}
+
+.embed-container {
+  height: 0;
+  height: auto;
+  margin-bottom: $spacing;
+  max-width: 100%;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+
+  iframe,
+  object,
+  embed {
+    border: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+
+@mixin truncate {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+%truncate {
+  @include truncate;
+}
+
+.clear-container {
+  @extend %clearfix;
+  display: block;
+  position: relative;
+
+  @include media(lap) {
+    margin-left: -$spacing;
+    margin-right: -$spacing;
+  }
+
+  @include media(palm) {
+    margin-left: -$spacing/2;
+    margin-right: -$spacing/2;
+  }
+}
+
+.block {
+  display: block;
+}
